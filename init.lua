@@ -81,8 +81,6 @@ circularsaw.reset_circularsaw = function( pos )
 	inv:set_list("micro", { "" } )
 	inv:set_list("output", circularsaw.get_stair_output_inv( "", "", 0, meta:get_string("max_offered")))
 	meta:set_int("anz", 0 )
-
-	meta:set_string("infotext", "Circular saw, empty (owned by "..( meta:get_string("owner") or "" )..")")
 end
 
 
@@ -133,8 +131,6 @@ circularsaw.update_inventory = function( pos, amount )
 	inv:set_list("output", circularsaw.get_stair_output_inv( modname, material,  (akt + amount), meta:get_string("max_offered")))
 	-- store how many microblocks are available
 	meta:set_int("anz", (akt+amount) )
-
-	meta:set_string("infotext", "Circular saw, working with "..material.." (owned by "..( meta:get_string("owner") or "" )..")")
 end
 
 
@@ -314,27 +310,19 @@ minetest.register_node("circularsaw:circularsaw", {
 			return circularsaw.on_construct_init( pos,
 					"size[10,9]"..
 					"list[current_name;input;0,0;1,1;]"..
-				"label[0,0;Input material]"..
+				"label[0,0;Input]"..
 					"list[current_name;micro;0,1;1,1;]"..
-				"label[0,1;Rest/microblocks]"..
+				"label[0,1;Rest]"..
 					"field[0.3,2.5;1,1;max_offered;Max:;${max_offered}]"..
 					"button[1,2;1,1;Set;Set]"..
 					"list[current_name;recycle;0,3;1,1;]"..
-				"label[0,3;Recycle output]"..
+				"label[0,3;Recycle]"..
 					"list[current_name;output;2,0;7,4;]"..
 					"list[current_player;main;1,5;8,4;]")
 		end,
 
 		can_dig = function(pos,player)
 			return circularsaw.can_dig( pos, player )
-		end,
-
-		-- set owner of this circularsaw
-		after_place_node = function(pos, placer)
-			local meta = minetest.env:get_meta(pos)
-           
-			meta:set_string( "owner", ( placer:get_player_name() or "" ))
-			meta:set_string( "infotext", "Circular saw, empty (owned by "..( placer:get_player_name() or "" )..")")
 		end,
 
 		-- the amount of items offered per shape can be configured
@@ -422,7 +410,7 @@ if( minetest.get_modpath("locks") ~= nil ) then
 			locks:lock_init( pos,
 					"size[10,9]"..
 					"list[current_name;input;0,0;1,1;]"..
-				"label[0,0;Input material]"..
+				"label[0,0;Input]"..
 					"list[current_name;micro;0,1;1,1;]"..
 				"label[0,1;Rest/microblocks]"..
 					"field[0.3,2.5;1,1;max_offered;Max:;${max_offered}]"..
