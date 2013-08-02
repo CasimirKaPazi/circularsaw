@@ -7,9 +7,12 @@ allow me to provide a copy of his screwdriver for those people who do not have h
 
 Version: 1.1
 
-Craft: Place eight cobblestone stairs in the way you would place things for a furnace or normal chest.
+Craft:	[ ][s][ ]
+		[w][s][w]
+		[w][ ][w]
+		w = wood
+		s = steel ingot
        For the shared locked version, place a circular saw and a lock next to each other in the crafting grid.
-       Screwdriver (if you do not have technic installed): Craft above each other: steel ingot, steel ingot, stick.
 
 Changes: 
        25.01.13 Added textures and nodebox-model created by aximx51v.
